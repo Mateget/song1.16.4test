@@ -1,0 +1,9 @@
+{
+  "diggy": {
+    "category": "block",
+    "subtitle": "diggy",
+    "sounds": [
+      "test:diggy_diggy_hole"
+    ]
+  }
+}
