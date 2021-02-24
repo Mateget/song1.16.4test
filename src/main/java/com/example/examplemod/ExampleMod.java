@@ -6,9 +6,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
@@ -63,6 +66,7 @@ public class ExampleMod{
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+        Items.ACACIA_FENCE.getDefaultInstance();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -85,6 +89,7 @@ public class ExampleMod{
         LOGGER.info("HELLO from server starting");
     }
 
+    public static final Block DIGGY_STAIRS = new DiggyStairs();
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
@@ -93,6 +98,7 @@ public class ExampleMod{
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
             // register a new block here
             LOGGER.info("HELLO from Register Block");
+            blockRegistryEvent.getRegistry().register(DIGGY_STAIRS);
         }
     }
     
@@ -105,7 +111,7 @@ public class ExampleMod{
     @SubscribeEvent
 	public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
     	ExampleMod.LOGGER.info("Hey DIGGY DIGGY HOLE");
-		event.getRegistry().register(DIGGY_SONG);
+    	event.getRegistry().register(DIGGY_SONG);
 
 	}
     
